@@ -1,0 +1,28 @@
+# VISUAL STUDIO JUNK
+#==================
+*.sdf
+*.user
+*.suo
+*.opensdf
+*.sdf
+*.autosave
+*.aps
+
+# CLion
+#==================
+.idea
+cmake-build-debug
+
+# FOLDERS
+#==================
+Binaries/
+Build/
+Libs/_Build
+Temp/
+
+
+# TEMP FILES
+#==================
+*.BASE.cpp
+*.LOCAL.cpp
+*.REMOTE.cpp
