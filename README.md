@@ -113,8 +113,8 @@ void script() {
     on(isWindow("Some strategy game"), Action([&] {
         // Disable/Enable bindings when pressing "Enter" without silencing the key. 
         // This is useful to allow typing when "Enter" brings up the chat window. 
-        // The flag "Keys::NoMute" prevents "Enter" from being "silenced"
-        on(Enter - Keys::NoMute, enable);
+        // The flag "Send" prevents "Enter" from being "silenced"
+        on(Enter - Send, enable);
         
         // Disable/Enable bindings when pressing Ctrl + Enter, if you somehow 
         // need to manually correct.

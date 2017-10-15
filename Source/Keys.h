@@ -58,21 +58,23 @@ private:
     std::vector<ScanCode> m_alternatives;
 };
 
+enum KeyFlag {
+    Mute,
+    Send
+};
+
 class Keys {
 public:
-    enum Flags {
-        Mute,
-        NoMute
-    };
+
     Keys() {};
     Keys(Key key) {
         list.push_back(key);
     };
-    bool hasFlag(Flags flag) {
+    bool hasFlag(KeyFlag flag) {
         return flags.count(flag) > 0;
     };
     std::vector<Key> list;
-    std::set<Flags> flags;
+    std::set<KeyFlag> flags;
 };
 
 inline Keys operator+(const Key& left, const Key& right) {
@@ -88,7 +90,7 @@ inline Keys operator+(const Keys& keys, const Key& key) {
     return copy;
 }
 
-inline Keys operator-(const Keys& keys, const Keys::Flags& flag) {
+inline Keys operator-(const Keys& keys, const KeyFlag& flag) {
     Keys copy = keys;
     copy.flags.insert(flag);
     return copy;

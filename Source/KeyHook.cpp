@@ -97,7 +97,7 @@ void interceptionSend(Key key, bool pressed) {
             stroke.code = (unsigned short) code;
             stroke.state = (unsigned short) state;
             interception_send(s_context, *s_keyboardDevice, (InterceptionStroke const*) &stroke, 1);
-        } else{
+        } else {
             std::cout << "No keyboard device yet detected" << std::endl;
         }
     }
@@ -356,7 +356,7 @@ void KeyHook::on(Condition given, Action then, Action otherwise) {
     std::string path = m_callPath;
     int callCode = given.call();
     if (callCode == 1) {
-        if (given.hasFlag(Keys::Mute)) {
+        if (given.hasFlag(Mute)) {
             mute(currentKey());
         }
         unTrack(path + "2");
@@ -426,8 +426,6 @@ void KeyHook::every(int ms, std::function<void()> callback) {
             if (m_exiting) {
                 break;
             }
-
-//            std::cout << "task1 says:s " <<  << std::endl;
         }
     });
     s_threads.push_back(thread);
@@ -440,14 +438,13 @@ void KeyHook::releaseAllKeys() {
     m_hardwareKeys.clear();
 }
 
-
 int Condition::call() {
     return m_pressCode;
 }
 
 Condition::Condition(Keys keys) : Condition() {
-    if (!keys.hasFlag(Keys::NoMute)) {
-        m_flags.insert(Keys::Mute);
+    if (!keys.hasFlag(Send)) {
+        m_flags.insert(Mute);
     }
     m_pressCode = s_hook->getPressCode(keys);
 }

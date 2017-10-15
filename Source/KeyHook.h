@@ -19,7 +19,7 @@ public:
     Condition(bool active) {
         m_pressCode = active ? 1 : 0;
     }
-    Condition(int pressCode, std::set<Keys::Flags> flags = {}) {
+    Condition(int pressCode, std::set<KeyFlag> flags = {}) {
         m_flags = flags;
         m_pressCode = pressCode;
     }
@@ -27,14 +27,14 @@ public:
     Condition(std::function<bool()> callback) : Condition(callback()) {}
     Condition(Keys keys);
     Condition(Key key) : Condition(Keys(key)) {}
-    bool hasFlag(Keys::Flags flag) {
+    bool hasFlag(KeyFlag flag) {
         return m_flags.count(flag) > 0;
     };
     int call();
 
 private:
     int m_pressCode;
-    std::set<Keys::Flags> m_flags;
+    std::set<KeyFlag> m_flags;
 };
 
 class Action {
@@ -225,13 +225,20 @@ public:
     /// Returns if key is a modifier key, i.e. Shift, Ctrl or Alt.
     bool isModKey(Key key) {
         switch (key.getCode()) {
-            case ScanCode::LShift: return true;
-            case ScanCode::RShift: return true;
-            case ScanCode::LCtrl: return true;
-            case ScanCode::RCtrl: return true;
-            case ScanCode::LAlt: return true;
-            case ScanCode::RAlt: return true;
-            default: break;
+            case ScanCode::LShift:
+                return true;
+            case ScanCode::RShift:
+                return true;
+            case ScanCode::LCtrl:
+                return true;
+            case ScanCode::RCtrl:
+                return true;
+            case ScanCode::LAlt:
+                return true;
+            case ScanCode::RAlt:
+                return true;
+            default:
+                break;
         }
         return false;
     }
