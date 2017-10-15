@@ -389,8 +389,10 @@ bool KeyHook::isPressed(Keys keys) {
     return true;
 }
 void KeyHook::mute(Key key) {
-//    std::cout << "muted: " << key.toStr() << std::endl;
     m_mutedKeys.insert(key);
+    for(auto alt : key.getAlternatives()) {
+        m_mutedKeys.insert(Key(alt));
+    }
 }
 void KeyHook::send(std::string text) {
     for (char c : text) {
