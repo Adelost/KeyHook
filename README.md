@@ -181,4 +181,4 @@ Low level keyboard reading are handled with [Interception](https://github.com/ob
 Licensed under CC BY 4.0. Third party libraries are licensed under own respective licenses. 
 
 
-See [LICENCE.md](LICENCE.md) for more information.
+See [LICENSE.md](LICENSE.md) for more information.
