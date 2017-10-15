@@ -87,7 +87,7 @@ on(enable, Action([&] {
 }));
 ```
 
-**Important**: avoid using `if` statements in favor of `on` in `script()`. This ensures that rebinded keys are sent and released correctly when a condition is enabled/disabled.
+**Important**: avoid using `if` statements in favor of `on` in `script()`. This ensures that rebound keys are sent and released correctly when a condition is enabled/disabled.
 ```c++
 // if
 on(condition, Action([&] {
