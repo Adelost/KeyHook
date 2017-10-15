@@ -10,55 +10,56 @@ If this sounds intriguing to you please continue reading...
 
 **Basic setup**
 
-	#include "KeyHook.h"
+```c++
+#include "KeyHook.h"
 
-	using namespace kh;
+using namespace kh;
 
-	class MyKeyHook : public KeyHook {
-	protected:
-		void script() {
-		    // Script code goes here (executed every key press)
-		}
-	};
-
-	int main() {
-		MyKeyHook hook;
-		hook.start();
-		return EXIT_SUCCESS;
+class MyKeyHook : public KeyHook {
+protected:
+	void script() {
+	    // Script code goes here (executed every key press)
 	}
+};
 
+int main() {
+	MyKeyHook hook;
+	hook.start();
+	return EXIT_SUCCESS;
+}
+```
 
 **Basic usage**
 
 Rebind `A` to `B`.
-
-    on(A, B);
-    
+```c++
+on(A, B);
+```
 Keys can be disabled.
-    
-    mute(Win);
-
+```c++
+mute(Win);
+```
 Modifier keys work as expected and allows greater flexibility.
-
-    on(Ctrl + C, Ctrl + V);
-    on(Ctrl + V, Ctrl + C);
-    on(Ctrl + Alt + Delete, Ctrl + S);
-    on(LShift, RShift);
-    
+```c++
+on(Ctrl + C, Ctrl + V);
+on(Ctrl + V, Ctrl + C);
+on(Ctrl + Alt + Delete, Ctrl + S);
+on(LShift, RShift);
+```
 Rebind `mouse scroll` and `tilt` to `arrow keys` and vice versa, just to spice things up a bit.
+```c++
+// Rebind mouse keys
+on(MouseScrollDown, ArrowDown);
+on(MouseScrollUp, ArrowUp);
+on(MouseTiltLeft, ArrowLeft);
+on(MouseTiltRight, ArrowRight);
 
-    // Rebind mouse keys
-    on(MouseScrollDown, ArrowDown);
-    on(MouseScrollUp, ArrowUp);
-    on(MouseTiltLeft, ArrowLeft);
-    on(MouseTiltRight, ArrowRight);
-    
-    // Rebind arrow keys
-    on(ArrowDown, MouseScrollDown);
-    on(ArrowUp, MouseScrollUp);
-    on(ArrowLeft, MouseTiltLeft);
-    on(ArrowRight, MouseTiltRight);
-	
+// Rebind arrow keys
+on(ArrowDown, MouseScrollDown);
+on(ArrowUp, MouseScrollUp);
+on(ArrowLeft, MouseTiltLeft);
+on(ArrowRight, MouseTiltRight);
+```
 
     
 `Action`-objects can be used for greater customisation. Lambda capture (`&`) is required.
@@ -89,52 +90,52 @@ Conditions can be nested.
 **Advanced usage**
 
 This is an useful bindings to move camera controls from `arrow keys` to `WASD` in many strategy games, e.g. Age of Empires, Company of Heroes. 
-
-    void script() {
-        static bool enable = true;
-        
-        // Only apply when specified window is active
-        on(isWindow("Some strategy game"), Action([&] {
-            // Disable/Enable bindings when pressing "Enter" without silencing the key. 
-            // This is useful to allow typing when "Enter" brings up the chat window. 
-            // The flag "Keys::NoMute" prevents "Enter" from being "silenced"
-            on(Enter - Keys::NoMute, enable);
-            
-            // Disable/Enable bindings when pressing Ctrl + Enter, if you somehow 
-            // need to manually correct.
-            on(Ctrl + Enter, enable);
-            
-            on(enable, Action([&] {
-                // Rebind WASD to arrow keys
-                on(W, ArrowUp);
-                on(A, ArrowLeft);
-                on(S, ArrowDown);
-                on(D, ArrowRight);
-                
-                // Allow WASD by Ctrl-clicking
-                on(Ctrl + W, W);
-                on(Ctrl + A, A);
-                on(Ctrl + S, S);
-                on(Ctrl + D, D);
-            }));
-        }));
-    }
+```c++
+void script() {
+    static bool enable = true;
     
+    // Only apply when specified window is active
+    on(isWindow("Some strategy game"), Action([&] {
+        // Disable/Enable bindings when pressing "Enter" without silencing the key. 
+        // This is useful to allow typing when "Enter" brings up the chat window. 
+        // The flag "Keys::NoMute" prevents "Enter" from being "silenced"
+        on(Enter - Keys::NoMute, enable);
+        
+        // Disable/Enable bindings when pressing Ctrl + Enter, if you somehow 
+        // need to manually correct.
+        on(Ctrl + Enter, enable);
+        
+        on(enable, Action([&] {
+            // Rebind WASD to arrow keys
+            on(W, ArrowUp);
+            on(A, ArrowLeft);
+            on(S, ArrowDown);
+            on(D, ArrowRight);
+            
+            // Allow WASD by Ctrl-clicking
+            on(Ctrl + W, W);
+            on(Ctrl + A, A);
+            on(Ctrl + S, S);
+            on(Ctrl + D, D);
+        }));
+    }));
+}
+```
 Execute something during regular intervalls:
-
-    void script() {
-		// Script code goes here (executed every key press)
-    }
-    void init() {
-        // Do something every 100 millisecond
-        every(100, [&] {
-            if(isPressed(A)) {
-                // Send A
-                send(A);
-            }
-        });
-    }
-	
+```c++
+void script() {
+	// Script code goes here (executed every key press)
+}
+void init() {
+    // Do something every 100 millisecond
+    every(100, [&] {
+        // Keep sending A if A is pressed
+        if(isPressed(A)) {
+            send(A);
+        }
+    });
+}
+```	
 **Tips**
 
 Feel free to experiement with the API. Most of the safe to use public methods are documented with Doxygen-style annotations.
@@ -142,19 +143,19 @@ Feel free to experiement with the API. Most of the safe to use public methods ar
 **Important**
 
 Avoid using `if` statements in favor of `on` in script. This ensures that rebinded keys are sent and released correctly when a condition is enabled/disabled. This is especially important in nested conditions.
+```c++
+// if
+on(condition, Action([&] {
+	// true
+}));
 
-	// if(condition){}
-	on(condition, Action([&] {
-		// true
-	}));
-	
-	// if/else
-	on(condition, Action([&] {
-		// true
-	}), Action([&] {
-		// false
-	}));
-
+// if/else
+on(condition, Action([&] {
+	// true
+}), Action([&] {
+	// false
+}));
+```
 ## Scan codes
 
 Please note that rebinding of keys are based on scan code. The predefined keys are based on a US keyboard layout. Please consult the following chart to make modifications if unsure:
