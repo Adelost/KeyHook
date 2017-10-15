@@ -209,7 +209,7 @@ public:
 
     Key MouseScrollDown = ScanCode::MouseScrollDown;
     Key MouseScrollUp = ScanCode::MouseScrollUp;
-    Key MouseTiltLeft = ScanCode::MouseTiltLeft;
-    Key MouseTiltRight = ScanCode::MouseTiltRight;
+    Key MouseScrollLeft = ScanCode::MouseScrollLeft;
+    Key MouseScrollRight = ScanCode::MouseScrollRight;
 };
 }

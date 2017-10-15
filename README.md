@@ -46,19 +46,19 @@ on(Ctrl + V, Ctrl + C);
 on(Ctrl + Alt + Delete, Ctrl + S);
 on(LShift, RShift);
 ```
-Rebind `mouse scroll` and `mouse tilt` to `arrow keys` and vice versa, just to spice things up a bit.
+Rebind `mouse scrolling` to `arrow keys` and vice versa, just to spice things up a bit.
 ```c++
 // Rebind mouse keys
 on(MouseScrollDown, ArrowDown);
 on(MouseScrollUp, ArrowUp);
-on(MouseTiltLeft, ArrowLeft);
-on(MouseTiltRight, ArrowRight);
+on(MouseScrollLeft, ArrowLeft);
+on(MouseScrollRight, ArrowRight);
 
 // Rebind arrow keys
 on(ArrowDown, MouseScrollDown);
 on(ArrowUp, MouseScrollUp);
-on(ArrowLeft, MouseTiltLeft);
-on(ArrowRight, MouseTiltRight);
+on(ArrowLeft, MouseScrollLeft);
+on(ArrowRight, MouseScrollRight);
 ```
 `Action`-objects can be used for greater customisation. Lambda capture (`&`) is required.
 ```c++

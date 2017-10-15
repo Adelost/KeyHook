@@ -13,8 +13,8 @@ MouseKeyMapper::MouseKeyMapper() {
 
     addScroll(ScanCode::MouseScrollDown, 1024, -120);
     addScroll(ScanCode::MouseScrollUp, 1024, 120);
-    addScroll(ScanCode::MouseTiltLeft, 2048, -120);
-    addScroll(ScanCode::MouseTiltRight, 2048, 120);
+    addScroll(ScanCode::MouseScrollLeft, 2048, -120);
+    addScroll(ScanCode::MouseScrollRight, 2048, 120);
 }
 
 void MouseKeyMapper::add(ScanCode code, int pressState, int releaseState) {

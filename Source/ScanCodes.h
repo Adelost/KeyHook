@@ -104,8 +104,8 @@ enum class ScanCode {
 
     MouseScrollDown = 1100,
     MouseScrollUp = 1101,
-    MouseTiltLeft = 1102,
-    MouseTiltRight = 1103
+    MouseScrollLeft = 1102,
+    MouseScrollRight = 1103
 };
 
 std::string scanCodeToStr(ScanCode code);

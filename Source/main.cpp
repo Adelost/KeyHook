@@ -8,8 +8,8 @@ protected:
     void script() {
         on(ArrowDown, MouseScrollDown);
         on(ArrowUp, MouseScrollUp);
-        on(ArrowLeft, MouseTiltLeft);
-        on(ArrowRight, MouseTiltRight);
+        on(ArrowLeft, MouseScrollLeft);
+        on(ArrowRight, MouseScrollRight);
     }
 };
 

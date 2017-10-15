@@ -102,8 +102,8 @@ std::string scanCodeToStr(ScanCode code) {
         case ScanCode::MouseBack: return "MouseBack";
         case ScanCode::MouseScrollDown: return "MouseScrollDown";
         case ScanCode::MouseScrollUp: return "MouseScrollUp";
-        case ScanCode::MouseTiltLeft: return "MouseTiltLeft";
-        case ScanCode::MouseTiltRight: return "MouseTiltRight";
+        case ScanCode::MouseScrollLeft: return "MouseScrollLeft";
+        case ScanCode::MouseScrollRight: return "MouseScrollRight";
         default: break;
     }
     return std::to_string(rawCode);
