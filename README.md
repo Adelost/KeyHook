@@ -4,7 +4,7 @@
 
 Provides low level rebinding of both keyboard keys and mouse keys, as well as creating macros. Especially useful for both games and applications which do not support rebinding of keys. The bindings are built and run as a normal C++ program.
 
-If this sounds intriguing to you please continue reading...
+If this sounds intriguing to you, please continue reading...
 
 ## Examples
 
@@ -46,7 +46,7 @@ on(Ctrl + V, Ctrl + C);
 on(Ctrl + Alt + Delete, Ctrl + S);
 on(LShift, RShift);
 ```
-Rebind `mouse scroll` and `tilt` to `arrow keys` and vice versa, just to spice things up a bit.
+Rebind `mouse scroll` and `mouse tilt` to `arrow keys` and vice versa, just to spice things up a bit.
 ```c++
 // Rebind mouse keys
 on(MouseScrollDown, ArrowDown);
@@ -75,7 +75,8 @@ on(Ctrl + W, Action([&] {
     send("Write this text...");
 }));
 ```
-Conditions can be nested.
+
+`on` can be nested.
 ```c++
 static bool enable = true;
 on(Enter, enable); // Toggle boolean
@@ -85,9 +86,25 @@ on(enable, Action([&] {
     });
 }));
 ```
+
+**Important**: avoid using `if` statements in favor of `on` in `script()`. This ensures that rebinded keys are sent and released correctly when a condition is enabled/disabled.
+```c++
+// if
+on(condition, Action([&] {
+    // true
+}));
+
+// if/else
+on(condition, Action([&] {
+    // true
+}), Action([&] {
+    // false
+}));
+```
+
 **Advanced usage**
 
-This is an useful bindings to move camera controls from `arrow keys` to `WASD` in many strategy games, e.g. Age of Empires, Company of Heroes. 
+Move steering controls from `arrow keys` to `WASD`, where `Enter` brings up an in game chat window. This is an useful bindings in many strategy games, e.g. Age of Empires, Company of Heroes. 
 ```c++
 void script() {
     static bool enable = true;
@@ -119,7 +136,7 @@ void script() {
     }));
 }
 ```
-Execute something during regular intervalls:
+Execute something during regular intervals:
 ```c++
 void script() {
     // Script code goes here (executed every key press)
@@ -138,22 +155,6 @@ void init() {
 
 Feel free to experiement with the API. Most of the safe to use public methods are documented with Doxygen-style annotations.
 
-**Important**
-
-Avoid using `if` statements in favor of `on` in script. This ensures that rebinded keys are sent and released correctly when a condition is enabled/disabled. This is especially important in nested conditions.
-```c++
-// if
-on(condition, Action([&] {
-    // true
-}));
-
-// if/else
-on(condition, Action([&] {
-    // true
-}), Action([&] {
-    // false
-}));
-```
 ## Scan codes
 
 Please note that rebinding of keys are based on scan code. The predefined keys are based on a US keyboard layout. Please consult the following chart to make modifications if unsure:
