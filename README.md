@@ -161,6 +161,10 @@ Please note that rebinding of keys are based on scan code. The predefined keys a
 
 ![Keyboard scan codes](/Doc/Images/scancodes.jpg)
 
+## Portability
+
+Only usable on Windows currently, but most of the logic is platform independent and can be compiled under both Linux and Windows. Feel free to help out if you have the time.
+
 ## Possible TODOs
 
 * Expose a scripting API using Lua
@@ -168,14 +172,9 @@ Please note that rebinding of keys are based on scan code. The predefined keys a
 * Screen grabbing/reading
 * Support different keyboard layouts
 
-## Portability
-
-Only usable on Windows currently, but most of the logic is platform independent and can be compiled under both Linux and Windows. Feel free to help out if you have the time.
-
 ## Third parties
 
 Low level keyboard reading are handled with [Interception](https://github.com/oblitum/Interception) by Oblitum.
-
 
 ## License
 Licensed under CC BY 4.0. Third party libraries are licensed under own respective licenses. 
