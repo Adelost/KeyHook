@@ -60,33 +60,31 @@ on(ArrowUp, MouseScrollUp);
 on(ArrowLeft, MouseTiltLeft);
 on(ArrowRight, MouseTiltRight);
 ```
-
-    
 `Action`-objects can be used for greater customisation. Lambda capture (`&`) is required.
-
-    on(Ctrl + W, Action([&] {
-        // Press Ctrl + A
-        send(Ctrl + A);
-        
-        // Press Ctrl + A
-        send(Ctrl, true);
-        send(A);
-        send(Ctrl, false);
-        
-        // Press keys in sequence to spell out text
-        send("Write this text...");
-    }));
+```c++
+on(Ctrl + W, Action([&] {
+    // Press Ctrl + A
+    send(Ctrl + A);
     
+    // Press Ctrl + A
+    send(Ctrl, true);
+    send(A);
+    send(Ctrl, false);
+    
+    // Press keys in sequence to spell out text
+    send("Write this text...");
+}));
+```
 Conditions can be nested.
-
-    static bool enable = true;
-    on(Enter, enable); // Toggle boolean
-    on(enable, Action([&] {
-         on(A, Action([&] {
-            // Code...
-         });
-    }));
-
+```c++
+static bool enable = true;
+on(Enter, enable); // Toggle boolean
+on(enable, Action([&] {
+     on(A, Action([&] {
+        // Code...
+     });
+}));
+```
 **Advanced usage**
 
 This is an useful bindings to move camera controls from `arrow keys` to `WASD` in many strategy games, e.g. Age of Empires, Company of Heroes. 
@@ -135,7 +133,7 @@ void init() {
         }
     });
 }
-```	
+```
 **Tips**
 
 Feel free to experiement with the API. Most of the safe to use public methods are documented with Doxygen-style annotations.
