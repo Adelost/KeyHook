@@ -17,15 +17,15 @@ using namespace kh;
 
 class MyKeyHook : public KeyHook {
 protected:
-	void script() {
-	    // Script code goes here (executed every key press)
-	}
+    void script() {
+        // Script code goes here (executed every key press)
+    }
 };
 
 int main() {
-	MyKeyHook hook;
-	hook.start();
-	return EXIT_SUCCESS;
+    MyKeyHook hook;
+    hook.start();
+    return EXIT_SUCCESS;
 }
 ```
 
@@ -70,7 +70,7 @@ on(Ctrl + W, Action([&] {
     send(Ctrl, true);
     send(A);
     send(Ctrl, false);
-    
+
     // Press keys in sequence to spell out text
     send("Write this text...");
 }));
@@ -80,9 +80,9 @@ Conditions can be nested.
 static bool enable = true;
 on(Enter, enable); // Toggle boolean
 on(enable, Action([&] {
-     on(A, Action([&] {
+    on(A, Action([&] {
         // Code...
-     });
+    });
 }));
 ```
 **Advanced usage**
@@ -122,7 +122,7 @@ void script() {
 Execute something during regular intervalls:
 ```c++
 void script() {
-	// Script code goes here (executed every key press)
+    // Script code goes here (executed every key press)
 }
 void init() {
     // Do something every 100 millisecond
@@ -144,14 +144,14 @@ Avoid using `if` statements in favor of `on` in script. This ensures that rebind
 ```c++
 // if
 on(condition, Action([&] {
-	// true
+    // true
 }));
 
 // if/else
 on(condition, Action([&] {
-	// true
+    // true
 }), Action([&] {
-	// false
+    // false
 }));
 ```
 ## Scan codes
