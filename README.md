@@ -2,9 +2,9 @@
 
 ![KeyHook captain hook](/Doc/Images/cptnhook.png)
 
-Provides low level rebinding of both keyboard keys and mouse keys, as well as creating macros. Especially useful for both games and applications which do not support rebinding of keys. The bindings are built and run as a normal C++ program.
+KeyHook provides low level rebinding of both keyboard keys and mouse keys, as well as creation of macros. It is especially useful for both games and applications which do no support rebinding of keys. The bindings are built and run as a normal C++ program.
 
-If this sounds intriguing to you, please continue reading...
+If you ever wanted to rebind your WASD-keys to your scroll wheel (just to spice things up a bit), look no further!
 
 ## Examples
 
@@ -46,9 +46,9 @@ on(Ctrl + V, Ctrl + C);
 on(Ctrl + Alt + Delete, Ctrl + S);
 on(LShift, RShift);
 ```
-Rebind `mouse scrolling` to `arrow keys` and vice versa, just to spice things up a bit.
+Rebind `mouse scrolling` to `arrow keys`.
 ```c++
-// Rebind mouse keys
+// Rebind mouse scroll
 on(MouseScrollDown, ArrowDown);
 on(MouseScrollUp, ArrowUp);
 on(MouseScrollLeft, ArrowLeft);
@@ -111,9 +111,10 @@ void script() {
     
     // Only apply when specified window is active
     on(isWindow("Some strategy game"), Action([&] {
-        // Disable/Enable bindings when pressing "Enter" without silencing the key. 
-        // This is useful to allow typing when "Enter" brings up the chat window. 
-        // The flag "Send" prevents "Enter" from being "silenced"
+        // Disable/Enable bindings when pressing "Enter" without silencing the key, 
+        // which is useful to allow typing when "Enter" brings up the chat window. 
+        // The flag "Send" (passed  using the `-` operator) prevents "Enter" from
+        // being silenced.
         on(Enter - Send, enable);
         
         // Disable/Enable bindings when pressing Ctrl + Enter, if you somehow 
@@ -178,6 +179,5 @@ Low level keyboard reading are handled with [Interception](https://github.com/ob
 
 ## License
 Licensed under CC BY 4.0. Third party libraries are licensed under own respective licenses. 
-
 
 See [LICENSE.md](LICENSE.md) for more information.

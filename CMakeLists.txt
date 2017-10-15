@@ -10,7 +10,7 @@ if (NOT WIN32)
 endif ()
 
 # Source files
-set(SOURCES
+set(SOURCE_FILES
         Source/main.cpp
         Source/EnumClassHash.h
         Source/MouseKeyMapper.h
@@ -35,6 +35,7 @@ elseif (UNIX AND NOT APPLE)
 endif ()
 
 # Libraries
+include_directories(Libs/Catch)
 if (WIN32)
     include_directories(Libs/Interception)
     link_directories(Libs/Interception/x64)
@@ -43,7 +44,7 @@ if (WIN32)
 endif ()
 
 # Build
-add_executable(KeyHook ${SOURCES})
+add_executable(KeyHook ${SOURCE_FILES})
 target_link_libraries(KeyHook ${LIBS})
 
 # Post build
