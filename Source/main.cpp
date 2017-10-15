@@ -6,7 +6,6 @@ using namespace kh;
 class MyKeyHook : public KeyHook {
 protected:
     void script() {
-        static bool enable = true;
         on(ArrowDown, MouseScrollDown);
         on(ArrowUp, MouseScrollUp);
         on(ArrowLeft, MouseTiltLeft);
@@ -17,5 +16,5 @@ protected:
 int main() {
     MyKeyHook hook;
     hook.start();
-    return 0;
+    return EXIT_SUCCESS;
 }
