@@ -1,4 +1,4 @@
-# Hotkey
+# KeyHook
 
 ![KeyHook captain hook](/Doc/Images/cptnhook.png)
 
