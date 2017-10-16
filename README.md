@@ -46,7 +46,7 @@ on(Ctrl + V, Ctrl + C);
 on(Ctrl + Alt + Delete, Ctrl + S);
 on(LShift, RShift);
 ```
-Rebind `mouse scrolling` to `arrow keys`.
+Rebind `mouse scrolling` to `arrow keys`, and vice versa.
 ```c++
 // Rebind mouse scroll
 on(MouseScrollDown, ArrowDown);
