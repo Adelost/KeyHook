@@ -5,7 +5,7 @@ using namespace kh;
 
 class MyKeyHook : public KeyHook {
 protected:
-    void script() {
+    void script() override {
         on(ArrowDown, MouseScrollDown);
         on(ArrowUp, MouseScrollUp);
         on(ArrowLeft, MouseScrollLeft);

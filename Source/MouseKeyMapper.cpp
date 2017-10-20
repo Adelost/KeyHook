@@ -1,4 +1,7 @@
+#ifdef _WIN32_
 #include <interception.h>
+#endif
+
 #include "MouseKeyMapper.h"
 
 namespace kh {
@@ -62,6 +65,7 @@ bool MouseKeyMapper::hasStateFor(ScanCode code) {
     }
     return false;
 }
+#ifdef _WIN32_
 void MouseKeyMapper::getState(ScanCode code, bool pressed, InterceptionMouseStroke* stroke) {
     if (hasScrollStateFor(code)) {
         auto state = getScrollState(code);
@@ -73,4 +77,5 @@ void MouseKeyMapper::getState(ScanCode code, bool pressed, InterceptionMouseStro
         stroke->state = (unsigned short) m_releaseStates[code];
     }
 }
+#endif
 }

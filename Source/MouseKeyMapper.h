@@ -1,7 +1,11 @@
 #pragma once
 
 #include <unordered_map>
+
+#ifdef _WIN32_
 #include <interception.h>
+#endif
+
 #include "ScanCodes.h"
 #include "ScanCodes.h"
 #include "Keys.h"
@@ -26,9 +30,9 @@ public:
     void addScroll(ScanCode code, int state, int roll);
     bool hasScrollCodeFor(int state, int roll) {
         auto& rolls = m_scrollRolls;
-        if(rolls.count(state)){
+        if (rolls.count(state)) {
             auto& codes = rolls[state];
-            if(codes.count(roll)) {
+            if (codes.count(roll)) {
                 return true;
             }
         }
@@ -47,7 +51,10 @@ public:
     }
     bool hasCodeFor(int state);
     void getCode(int code, Key* key, bool* pressed);
+
+#ifdef _WIN32_
     void getState(ScanCode code, bool pressed, InterceptionMouseStroke* stroke);
+#endif
     bool hasStateFor(ScanCode code);
 };
 }
