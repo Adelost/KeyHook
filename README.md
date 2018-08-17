@@ -175,7 +175,7 @@ Only usable on Windows currently, but most of the logic is platform independent 
 
 ## Third parties
 
-Low level keyboard reading are handled with [Interception](https://github.com/oblitum/Interception) by Oblitum.
+Low level keyboard reading on Windows are handled with [Interception](https://github.com/oblitum/Interception) by Oblitum. Note: KeyHook was originally based on WinApi LowLevelKeyboardProc, however this method does not work for some games, especially older games based on DirectInput.
 
 ## License
 Licensed under CC BY 4.0. Third party libraries are licensed under own respective licenses. 
