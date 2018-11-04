@@ -166,6 +166,42 @@ Please note that rebinding of keys are based on scan code. The predefined keys a
 
 Only usable on Windows currently, but most of the logic is platform independent and can be compiled under both Linux and Windows. Feel free to help out if you have the time.
 
+## Build and Installation on Windows
+
+KeyHook requires installing the third-party lib [Interception](https://github.com/oblitum/Interception).
+
+1. Download [Interception.zip ](https://github.com/oblitum/Interception/releases) v.1.0.1
+2. Install Interception drivers by running `install-interception.exe` as administrator
+3. IMPORTANT: Restart computer for drivers to work
+
+The preferred way of building KeyHook is with [Cmake](https://cmake.org/install/).
+
+CMake gives you multiple options of building the executable.
+
+If you have CMake added to you PATH, and have "Visual Studio 15 2017" or 
+similar installed, here is one way it can be done:
+
+With Git Bash installed you can simply execute the BUILD.sh for a default build. The binaries are found in `KeyHook\build\Release`.
+
+You can also perform the steps manually by executing the following commands in almost any terminal:
+
+```
+# From root directory of KeyHook open any terminal and perform the following commands
+
+# For building x86
+mkdir build32
+cd build32
+cmake -G "Visual Studio 15 2017" ../
+cmake --build . --config Release
+cd ..
+
+# For building x64
+mkdir build64
+cd build64
+cmake -G "Visual Studio 15 2017 Win64" ../
+cmake --build . --config Release
+```
+
 ## Possible TODOs
 
 * Expose a scripting API using Lua

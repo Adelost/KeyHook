@@ -1,13 +1,31 @@
 # Definitions for different platforms
+
+# Normalize definitions
+if (CYGWIN)
+    set(UNIX FALSE)
+    set(WIN32 TRUE)
+endif ()
 if (UNIX AND NOT APPLE)
     set(LINUX TRUE)
+    message("UNIX AND NOT APPLE")
 endif ()
+
+# Add definitions
 if (WIN32)
     add_definitions(-D_WIN32_)
 elseif (APPLE)
     add_definitions(-D_APPLE_)
 elseif (LINUX)
     add_definitions(-D_LINUX_)
+endif ()
+
+# Find architecture bitness
+if (CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(BITNESS x86)
+elseif (CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(BITNESS x64)
+elseif ()
+    message("Unkown architecture bitness")
 endif ()
 
 # Appends "files" to "variable"

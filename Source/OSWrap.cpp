@@ -50,15 +50,17 @@ Sense::~Sense() {
 }
 Color Sense::pixel(Point point) {
 #ifdef _WIN32_
-    std::cout << "Point: " << point.x << " " << point.y << std::endl;
-    point = mapToGlobal(point, m_window);
-
-    COLORREF color = GetPixel(m_dc, point.x, point.y);
-    int r = GetRValue(color);
-    int g = GetGValue(color);
-    int b = GetBValue(color);
-    std::cout << "Beforehex: " << r << " " << g << " " << b << std::endl;
-    return {r, g, b};
+// TODO: Problem with lgdi32 in later versions of MSVC
+//    std::cout << "Point: " << point.x << " " << point.y << std::endl;
+//    point = mapToGlobal(point, m_window);
+//
+//    COLORREF color = GetPixel(m_dc, point.x, point.y);
+//    int r = GetRValue(color);
+//    int g = GetGValue(color);
+//    int b = GetBValue(color);
+//    std::cout << "Beforehex: " << r << " " << g << " " << b << std::endl;
+//    return {r, g, b};
+    return {0, 0, 0};
 #else
     return {0, 0, 0};
 #endif

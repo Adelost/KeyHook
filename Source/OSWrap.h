@@ -3,7 +3,7 @@
 #include <sstream>
 
 #ifdef _WIN32_
-#include "Windows.h"
+#include "windows.h"
 #endif
 
 namespace kh {

@@ -18,9 +18,9 @@ include_directories(Libs/Catch)
 ## Windows keyboard/mouse reading
 if (WIN32)
     include_directories(Libs/Interception)
-    link_directories(Libs/Interception/x64)
+    link_directories(Libs/Interception/${BITNESS})
     append(LIBS interception)
-    append(COPY_TO_BIN Libs/Interception/x64/interception.dll)
+    append(COPY_TO_BIN Libs/Interception/${BITNESS}/interception.dll)
 endif ()
 
 # Build binaries
