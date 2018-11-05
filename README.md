@@ -154,7 +154,9 @@ void init() {
 ```
 **Tips**
 
-Feel free to experiement with the API. Most of the safe to use public methods are documented with Doxygen-style annotations.
+Feel free to experiement with the API. Most of the safe to use [public methods](https://github.com/Adelost/KeyHook/blob/master/Source/KeyHook.h) are documented with Doxygen-style annotations.
+
+
 
 ## Scan codes
 
