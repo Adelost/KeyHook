@@ -193,14 +193,14 @@ You can also perform the steps manually by executing the following commands in a
 # For building x86
 mkdir build32
 cd build32
-cmake -G "Visual Studio 15 2017" ../
+cmake -G "Visual Studio 15 2017" ..
 cmake --build . --config Release
 cd ..
 
 # For building x64
 mkdir build64
 cd build64
-cmake -G "Visual Studio 15 2017 Win64" ../
+cmake -G "Visual Studio 15 2017 Win64" ..
 cmake --build . --config Release
 ```
 
